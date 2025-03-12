@@ -1,7 +1,7 @@
 name: revan_client
 description: Dart client for Revan API.
 version: 0.1.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/greymag/revan_client
 
 environment:
   sdk: ^3.5.0
