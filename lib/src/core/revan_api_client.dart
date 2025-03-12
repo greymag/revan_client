@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:revan_client/src/core/aliases.dart';
+import 'package:revan_client/src/core/error/error_codes.dart';
 import 'package:revan_client/src/core/error/error_response.dart';
+import 'package:revan_client/src/core/exception/revan_exception.dart';
 
-typedef FromJson<T> = T Function(Map<String, Object>);
+typedef FromJson<T> = T Function(Map<String, dynamic>);
 
 class RevanApiClient {
   final String apiUrl;
@@ -37,13 +39,18 @@ class RevanApiClient {
       final decodedResponse = jsonDecode(data) as Map<String, dynamic>;
 
       if (statusCode >= 200 && statusCode < 300) {
-        return Result.value(fromJson(decodedResponse.cast<String, Object>()));
+        return Result.value(_parse(fromJson, decodedResponse));
       } else {
-        return Result.error(ErrorResponse.fromJson(decodedResponse));
+        return Result.error(_parse(ErrorResponse.fromJson, decodedResponse));
       }
+    } on RevanException catch (e) {
+      return ErrorResponse.resultByCode(
+        e.errorCode,
+        description: e.message,
+      );
     } catch (e) {
       // TODO: log
-      return ErrorResponse.internalErrorResult(
+      return ErrorResponse.unknownErrorResult(
         'Unexpected exception: $e. Status code: $statusCode',
       );
     }
@@ -51,5 +58,16 @@ class RevanApiClient {
 
   void dispose() {
     _http.close();
+  }
+
+  T _parse<T>(FromJson<T> fromJson, Map<String, dynamic> json) {
+    try {
+      return fromJson(json);
+    } catch (e) {
+      throw RevanException(
+        ClientErrorCode.parseError,
+        'Error parsing response: $e',
+      );
+    }
   }
 }

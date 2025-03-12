@@ -22,6 +22,18 @@ class ErrorResponse with _$ErrorResponse {
   factory ErrorResponse.internalError([String? description]) =>
       ErrorResponse.byCode(GlobalErrorCode.system, description: description);
 
+  factory ErrorResponse.parseError([String? description]) =>
+      ErrorResponse.byCode(
+        ClientErrorCode.parseError,
+        description: description,
+      );
+
+  factory ErrorResponse.unknownError([String? description]) =>
+      ErrorResponse.byCode(
+        ClientErrorCode.unknown,
+        description: description,
+      );
+
   factory ErrorResponse.byCode(
     ErrorCode errorCode, {
     String? description,
@@ -41,6 +53,23 @@ class ErrorResponse with _$ErrorResponse {
 
   static Result<T> internalErrorResult<T>([String? description]) =>
       ErrorResponse.internalError(description).toResult();
+
+  static Result<T> parseErrorResult<T>([String? description]) =>
+      ErrorResponse.parseError(description).toResult();
+
+  static Result<T> unknownErrorResult<T>([String? description]) =>
+      ErrorResponse.unknownError(description).toResult();
+
+  static Result<T> resultByCode<T>(
+    ErrorCode errorCode, {
+    String? description,
+    bool retry = false,
+  }) =>
+      ErrorResponse.byCode(
+        errorCode,
+        description: description,
+        retry: retry,
+      ).toResult();
 }
 
 @freezed

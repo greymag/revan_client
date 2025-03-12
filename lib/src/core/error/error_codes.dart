@@ -12,6 +12,19 @@ enum GlobalErrorCode implements ErrorCode {
   const GlobalErrorCode(this.code);
 }
 
+enum ClientErrorCode implements ErrorCode {
+  unknown(0),
+  parseError(1);
+
+  @override
+  final domain = 'Client';
+
+  @override
+  final int code;
+
+  const ClientErrorCode(this.code);
+}
+
 abstract interface class ErrorCode {
   String get domain;
   int get code;
