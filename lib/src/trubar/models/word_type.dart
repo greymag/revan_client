@@ -1,0 +1,44 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+enum WordType {
+  @JsonValue('MAIN')
+  main,
+  @JsonValue('GENERAL')
+  general,
+  @JsonValue('COMMON')
+  common,
+  @JsonValue('PARTICIPLE')
+  participle,
+  @JsonValue('AUXILIARY')
+  auxiliary,
+  @JsonValue('SUBORDINATING')
+  subordinating,
+  @JsonValue('COORDINATING')
+  coordinating,
+  @JsonValue('POSSESSIVE')
+  possessive,
+  @JsonValue('PROPER')
+  proper,
+  @JsonValue('INDEFINITE')
+  indefinite,
+  @JsonValue('SPECIAL')
+  special,
+  @JsonValue('ORDINAL')
+  ordinal,
+  @JsonValue('CARDINAL')
+  cardinal,
+  @JsonValue('REFLEXIVE')
+  reflexive,
+  @JsonValue('PERSONAL')
+  personal,
+  @JsonValue('DEMONSTRATIVE')
+  demonstrative,
+  @JsonValue('PRONOMINAL')
+  pronominal,
+  @JsonValue('INTERROGATIVE')
+  interrogative,
+  @JsonValue('RELATIVE')
+  relative,
+  @JsonValue('NEGATIVE')
+  negative,
+}
