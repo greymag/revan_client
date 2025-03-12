@@ -67,6 +67,7 @@ class RevanApiClient {
       throw RevanException(
         ClientErrorCode.parseError,
         'Error parsing response: $e',
+        debugData: json,
       );
     }
   }
