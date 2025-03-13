@@ -1,7 +1,7 @@
 # Revan API client
 
 [![pub package](https://img.shields.io/pub/v/revan_client)](https://pub.dartlang.org/packages/revan_client)
-[![Analyze & Test](https://github.com/greymag/revan_client/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/greymag/revan_client/actions/workflows/dart.yml)
+[![Analyze & Test](https://github.com/greymag/revan_client/actions/workflows/validation.yml/badge.svg?branch=main)](https://github.com/greymag/revan_client/actions/workflows/validation.yml)
 
 Dart Client for Revan API.
 
