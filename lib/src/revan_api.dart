@@ -1,16 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revan_client/src/core/revan_api_client.dart';
 import 'package:revan_client/src/trubar/trubar_endpoint.dart';
 
 class RevanApi {
-  late final trubar = RevanApiTrubarEndpoint(_client);
+  late final trubar = RevanApiTrubarEndpoint(client);
 
-  final RevanApiClient _client;
+  @visibleForTesting
+  final RevanApiClient client;
 
   RevanApi({
     required String apiUrl,
-  }) : _client = RevanApiClient(apiUrl: apiUrl);
+  }) : client = RevanApiClient(apiUrl: apiUrl);
 
   void dispose() {
-    _client.dispose();
+    client.dispose();
   }
 }
