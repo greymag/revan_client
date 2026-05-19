@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:revan_client/src/revan_api.dart';
 import 'package:revan_client/src/core/revan_api_client.dart';
 import 'package:mockito/mockito.dart';
