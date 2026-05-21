@@ -13,14 +13,18 @@ class RevanApiClient {
   final String apiUrl;
   late final Uri _baseUri = Uri.parse(apiUrl);
 
-  late final _http = http.Client();
+  final http.Client _http;
 
-  RevanApiClient({required this.apiUrl});
+  RevanApiClient({
+    required this.apiUrl,
+    http.Client? httpClient,
+  }) : _http = httpClient ?? http.Client();
 
   AsyncResult<T> get<T>(
     String path,
     FromJson<T> fromJson, {
     Map<String, Object>? query,
+    Set<int>? successStatusCodes,
   }) async {
     final uri = _baseUri.resolve(path).replace(queryParameters: query);
     // TODO: try..catch for get()?
@@ -38,7 +42,10 @@ class RevanApiClient {
       final data = utf8.decode(response.bodyBytes);
       final decodedResponse = jsonDecode(data) as Map<String, dynamic>;
 
-      if (statusCode >= 200 && statusCode < 300) {
+      final isSuccess = successStatusCodes?.contains(statusCode) ??
+          (statusCode >= 200 && statusCode < 300);
+
+      if (isSuccess) {
         return Result.value(_parse(fromJson, decodedResponse));
       } else {
         return Result.error(_parse(ErrorResponse.fromJson, decodedResponse));

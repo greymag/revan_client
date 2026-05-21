@@ -2,4 +2,5 @@
 library;
 
 export 'src/revan_api.dart';
+export 'src/health/health.dart';
 export 'src/trubar/trubar.dart';

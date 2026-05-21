@@ -27,10 +27,12 @@ abstract class RevanApiEndpoint {
     String method,
     FromJson<T> fromJson, {
     Map<String, Object>? query,
+    Set<int>? successStatusCodes,
   }) =>
       _client.get(
-        '$path/$method',
+        method.isEmpty ? path : '$path/$method',
         fromJson,
         query: query,
+        successStatusCodes: successStatusCodes,
       );
 }
