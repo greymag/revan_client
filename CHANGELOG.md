@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.0
 
 - Add Health API support with summary and detailed health checks.
 - Add `gender` and `matchedForm` metadata to Trubar find results.
