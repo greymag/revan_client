@@ -23,6 +23,8 @@ SloleksFindResultEntry _$SloleksFindResultEntryFromJson(
 mixin _$SloleksFindResultEntry {
   String get lemma => throw _privateConstructorUsedError;
   WordCategory get category => throw _privateConstructorUsedError;
+  WordGender? get gender => throw _privateConstructorUsedError;
+  String? get matchedForm => throw _privateConstructorUsedError;
 
   /// Serializes this SloleksFindResultEntry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,11 @@ abstract class $SloleksFindResultEntryCopyWith<$Res> {
           $Res Function(SloleksFindResultEntry) then) =
       _$SloleksFindResultEntryCopyWithImpl<$Res, SloleksFindResultEntry>;
   @useResult
-  $Res call({String lemma, WordCategory category});
+  $Res call(
+      {String lemma,
+      WordCategory category,
+      WordGender? gender,
+      String? matchedForm});
 }
 
 /// @nodoc
@@ -61,6 +67,8 @@ class _$SloleksFindResultEntryCopyWithImpl<$Res,
   $Res call({
     Object? lemma = null,
     Object? category = null,
+    Object? gender = freezed,
+    Object? matchedForm = freezed,
   }) {
     return _then(_value.copyWith(
       lemma: null == lemma
@@ -71,6 +79,14 @@ class _$SloleksFindResultEntryCopyWithImpl<$Res,
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as WordCategory,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as WordGender?,
+      matchedForm: freezed == matchedForm
+          ? _value.matchedForm
+          : matchedForm // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -84,7 +100,11 @@ abstract class _$$SloleksFindResultEntryImplCopyWith<$Res>
       __$$SloleksFindResultEntryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String lemma, WordCategory category});
+  $Res call(
+      {String lemma,
+      WordCategory category,
+      WordGender? gender,
+      String? matchedForm});
 }
 
 /// @nodoc
@@ -104,6 +124,8 @@ class __$$SloleksFindResultEntryImplCopyWithImpl<$Res>
   $Res call({
     Object? lemma = null,
     Object? category = null,
+    Object? gender = freezed,
+    Object? matchedForm = freezed,
   }) {
     return _then(_$SloleksFindResultEntryImpl(
       lemma: null == lemma
@@ -114,6 +136,14 @@ class __$$SloleksFindResultEntryImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as WordCategory,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as WordGender?,
+      matchedForm: freezed == matchedForm
+          ? _value.matchedForm
+          : matchedForm // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -122,7 +152,10 @@ class __$$SloleksFindResultEntryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
   const _$SloleksFindResultEntryImpl(
-      {required this.lemma, required this.category});
+      {required this.lemma,
+      required this.category,
+      this.gender,
+      this.matchedForm});
 
   factory _$SloleksFindResultEntryImpl.fromJson(Map<String, dynamic> json) =>
       _$$SloleksFindResultEntryImplFromJson(json);
@@ -131,10 +164,14 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
   final String lemma;
   @override
   final WordCategory category;
+  @override
+  final WordGender? gender;
+  @override
+  final String? matchedForm;
 
   @override
   String toString() {
-    return 'SloleksFindResultEntry(lemma: $lemma, category: $category)';
+    return 'SloleksFindResultEntry(lemma: $lemma, category: $category, gender: $gender, matchedForm: $matchedForm)';
   }
 
   @override
@@ -144,12 +181,16 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
             other is _$SloleksFindResultEntryImpl &&
             (identical(other.lemma, lemma) || other.lemma == lemma) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.matchedForm, matchedForm) ||
+                other.matchedForm == matchedForm));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, lemma, category);
+  int get hashCode =>
+      Object.hash(runtimeType, lemma, category, gender, matchedForm);
 
   /// Create a copy of SloleksFindResultEntry
   /// with the given fields replaced by the non-null parameter values.
@@ -171,7 +212,9 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
 abstract class _SloleksFindResultEntry implements SloleksFindResultEntry {
   const factory _SloleksFindResultEntry(
       {required final String lemma,
-      required final WordCategory category}) = _$SloleksFindResultEntryImpl;
+      required final WordCategory category,
+      final WordGender? gender,
+      final String? matchedForm}) = _$SloleksFindResultEntryImpl;
 
   factory _SloleksFindResultEntry.fromJson(Map<String, dynamic> json) =
       _$SloleksFindResultEntryImpl.fromJson;
@@ -180,6 +223,10 @@ abstract class _SloleksFindResultEntry implements SloleksFindResultEntry {
   String get lemma;
   @override
   WordCategory get category;
+  @override
+  WordGender? get gender;
+  @override
+  String? get matchedForm;
 
   /// Create a copy of SloleksFindResultEntry
   /// with the given fields replaced by the non-null parameter values.

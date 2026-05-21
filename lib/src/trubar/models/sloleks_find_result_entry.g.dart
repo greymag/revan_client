@@ -11,6 +11,8 @@ _$SloleksFindResultEntryImpl _$$SloleksFindResultEntryImplFromJson(
     _$SloleksFindResultEntryImpl(
       lemma: json['lemma'] as String,
       category: $enumDecode(_$WordCategoryEnumMap, json['category']),
+      gender: $enumDecodeNullable(_$WordGenderEnumMap, json['gender']),
+      matchedForm: json['matchedForm'] as String?,
     );
 
 Map<String, dynamic> _$$SloleksFindResultEntryImplToJson(
@@ -18,6 +20,8 @@ Map<String, dynamic> _$$SloleksFindResultEntryImplToJson(
     <String, dynamic>{
       'lemma': instance.lemma,
       'category': _$WordCategoryEnumMap[instance.category]!,
+      'gender': _$WordGenderEnumMap[instance.gender],
+      'matchedForm': instance.matchedForm,
     };
 
 const _$WordCategoryEnumMap = {
@@ -32,4 +36,10 @@ const _$WordCategoryEnumMap = {
   WordCategory.interjection: 'INTERJECTION',
   WordCategory.preposition: 'PREPOSITION',
   WordCategory.abbreviation: 'ABBREVIATION',
+};
+
+const _$WordGenderEnumMap = {
+  WordGender.masculine: 'MASCULINE',
+  WordGender.feminine: 'FEMININE',
+  WordGender.neuter: 'NEUTER',
 };

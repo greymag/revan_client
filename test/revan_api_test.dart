@@ -93,4 +93,48 @@ void main() {
       expect(details?.components['disk']?.details['usablePercent'], '8.5');
     });
   });
+
+  group('RevanApiTrubarEndpoint', () {
+    test('should parse find response with gender and matched form', () async {
+      final client = RevanApiClient(
+        apiUrl: _kApiUrl,
+        httpClient: MockClient((request) async {
+          expect(request.url.toString(), '$_kApiUrl/trubar/find?search=lep');
+          return Response(
+            '''
+{
+  "list": [
+    {
+      "lemma": "lep",
+      "category": "ADJECTIVE",
+      "gender": "MASCULINE",
+      "matchedForm": "lepi"
+    },
+    {
+      "lemma": "lepo",
+      "category": "ADVERB"
+    }
+  ]
+}
+''',
+            200,
+          );
+        }),
+      );
+
+      final result = await RevanApiTrubarEndpoint(client).find('lep');
+
+      expect(result.isValue, isTrue);
+      final entries = result.asValue?.value.list;
+      expect(entries, hasLength(2));
+      expect(entries?[0].lemma, 'lep');
+      expect(entries?[0].category, WordCategory.adjective);
+      expect(entries?[0].gender, WordGender.masculine);
+      expect(entries?[0].matchedForm, 'lepi');
+      expect(entries?[1].lemma, 'lepo');
+      expect(entries?[1].category, WordCategory.adverb);
+      expect(entries?[1].gender, isNull);
+      expect(entries?[1].matchedForm, isNull);
+    });
+  });
 }
