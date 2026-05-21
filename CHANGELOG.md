@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add Health API support with summary and detailed health checks.
+
 ## 0.1.0+1
 
 - Min version of `async` package decreased to `2.12.0`.
