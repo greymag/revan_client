@@ -38,6 +38,10 @@ Avoid tests that require a live backend. Use mocks or local fakes for API behavi
 
 Use Conventional Commits: `type(scope): summary`. Common types are `feat`, `fix`, `test`, `docs`, `refactor`, `ci`, and `chore`. Examples: `feat(trubar): add word data endpoint`, `test(api): cover client initialization`.
 
+## Custom Commands
+
+When the user says `finish`, complete the current work by committing implementation changes first, then updating `CHANGELOG.md` with a concise entry for the committed work and committing that changelog update separately. Use Conventional Commits for both commits, for example `feat(app): add app info endpoint` followed by `docs(changelog): update for app info endpoint`.
+
 ## Release Process
 
 For pre-1.0 package versions, interpret semver with the public API significance shifted down one slot: `0.2.0` indicates a breaking change, `0.1.3` indicates a new feature, and `0.1.2+1` indicates a change that does not affect the public API. Do not use `+N` build metadata for feature releases.
