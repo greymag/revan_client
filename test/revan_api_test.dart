@@ -22,12 +22,37 @@ void main() {
       expect(revanApi.client.apiUrl, _kApiUrl);
     });
 
+    test('should initialize RevanApiAppEndpoint', () {
+      expect(revanApi.app, isNotNull);
+    });
+
     test('should initialize RevanApiTrubarEndpoint', () {
       expect(revanApi.trubar, isNotNull);
     });
 
     test('should initialize RevanApiHealthEndpoint', () {
       expect(revanApi.health, isNotNull);
+    });
+  });
+
+  group('RevanApiAppEndpoint', () {
+    test('should parse app info response', () async {
+      final client = RevanApiClient(
+        apiUrl: _kApiUrl,
+        httpClient: MockClient((request) async {
+          expect(request.url.toString(), '$_kApiUrl/app/info');
+          return Response(
+            '{"name":"Revan API","version":"0.2.0"}',
+            200,
+          );
+        }),
+      );
+
+      final result = await RevanApiAppEndpoint(client).info();
+
+      expect(result.isValue, isTrue);
+      expect(result.asValue?.value.name, 'Revan API');
+      expect(result.asValue?.value.version, '0.2.0');
     });
   });
 
