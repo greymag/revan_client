@@ -1,8 +1,11 @@
+## Unreleased
+
+- Add `frequency` and `type` metadata to Trubar find results.
+
 ## 0.2.0
 
 - Add Health API support with summary and detailed health checks.
 - Add `gender` and `matchedForm` metadata to Trubar find results.
-- Add `frequency` and `type` metadata to Trubar find results.
 
 ## 0.1.0+1
 
