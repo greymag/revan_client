@@ -46,6 +46,8 @@ When the user says `finish`, complete the current work by committing implementat
 
 For pre-1.0 package versions, interpret semver with the public API significance shifted down one slot: `0.2.0` indicates a breaking change, `0.1.3` indicates a new feature, and `0.1.2+1` indicates a change that does not affect the public API. Do not use `+N` build metadata for feature releases.
 
+When `finish` adds a changelog entry after a version has already been published, place the new entry under `## Unreleased` instead of modifying the published version section. Only edit a versioned changelog block during explicit release prep for that version.
+
 The GitHub publish workflow is configured in `.github/workflows/publish.yml` and runs after the `Analyze & Test` workflow succeeds on `main`. Release prep should update `pubspec.yaml` and `CHANGELOG.md`, then validate with `fvm dart analyze` and `fvm dart test`.
 
 ## Safety Notes
