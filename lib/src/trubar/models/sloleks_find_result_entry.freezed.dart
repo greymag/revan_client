@@ -23,6 +23,8 @@ SloleksFindResultEntry _$SloleksFindResultEntryFromJson(
 mixin _$SloleksFindResultEntry {
   String get lemma => throw _privateConstructorUsedError;
   WordCategory get category => throw _privateConstructorUsedError;
+  int get frequency => throw _privateConstructorUsedError;
+  WordType? get type => throw _privateConstructorUsedError;
   WordGender? get gender => throw _privateConstructorUsedError;
   String? get matchedForm => throw _privateConstructorUsedError;
 
@@ -45,6 +47,8 @@ abstract class $SloleksFindResultEntryCopyWith<$Res> {
   $Res call(
       {String lemma,
       WordCategory category,
+      int frequency,
+      WordType? type,
       WordGender? gender,
       String? matchedForm});
 }
@@ -67,6 +71,8 @@ class _$SloleksFindResultEntryCopyWithImpl<$Res,
   $Res call({
     Object? lemma = null,
     Object? category = null,
+    Object? frequency = null,
+    Object? type = freezed,
     Object? gender = freezed,
     Object? matchedForm = freezed,
   }) {
@@ -79,6 +85,14 @@ class _$SloleksFindResultEntryCopyWithImpl<$Res,
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as WordCategory,
+      frequency: null == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WordType?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -103,6 +117,8 @@ abstract class _$$SloleksFindResultEntryImplCopyWith<$Res>
   $Res call(
       {String lemma,
       WordCategory category,
+      int frequency,
+      WordType? type,
       WordGender? gender,
       String? matchedForm});
 }
@@ -124,6 +140,8 @@ class __$$SloleksFindResultEntryImplCopyWithImpl<$Res>
   $Res call({
     Object? lemma = null,
     Object? category = null,
+    Object? frequency = null,
+    Object? type = freezed,
     Object? gender = freezed,
     Object? matchedForm = freezed,
   }) {
@@ -136,6 +154,14 @@ class __$$SloleksFindResultEntryImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as WordCategory,
+      frequency: null == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as WordType?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -154,6 +180,8 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
   const _$SloleksFindResultEntryImpl(
       {required this.lemma,
       required this.category,
+      required this.frequency,
+      this.type,
       this.gender,
       this.matchedForm});
 
@@ -165,13 +193,17 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
   @override
   final WordCategory category;
   @override
+  final int frequency;
+  @override
+  final WordType? type;
+  @override
   final WordGender? gender;
   @override
   final String? matchedForm;
 
   @override
   String toString() {
-    return 'SloleksFindResultEntry(lemma: $lemma, category: $category, gender: $gender, matchedForm: $matchedForm)';
+    return 'SloleksFindResultEntry(lemma: $lemma, category: $category, frequency: $frequency, type: $type, gender: $gender, matchedForm: $matchedForm)';
   }
 
   @override
@@ -182,6 +214,9 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
             (identical(other.lemma, lemma) || other.lemma == lemma) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.frequency, frequency) ||
+                other.frequency == frequency) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.matchedForm, matchedForm) ||
                 other.matchedForm == matchedForm));
@@ -189,8 +224,8 @@ class _$SloleksFindResultEntryImpl implements _SloleksFindResultEntry {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, lemma, category, gender, matchedForm);
+  int get hashCode => Object.hash(
+      runtimeType, lemma, category, frequency, type, gender, matchedForm);
 
   /// Create a copy of SloleksFindResultEntry
   /// with the given fields replaced by the non-null parameter values.
@@ -213,6 +248,8 @@ abstract class _SloleksFindResultEntry implements SloleksFindResultEntry {
   const factory _SloleksFindResultEntry(
       {required final String lemma,
       required final WordCategory category,
+      required final int frequency,
+      final WordType? type,
       final WordGender? gender,
       final String? matchedForm}) = _$SloleksFindResultEntryImpl;
 
@@ -223,6 +260,10 @@ abstract class _SloleksFindResultEntry implements SloleksFindResultEntry {
   String get lemma;
   @override
   WordCategory get category;
+  @override
+  int get frequency;
+  @override
+  WordType? get type;
   @override
   WordGender? get gender;
   @override

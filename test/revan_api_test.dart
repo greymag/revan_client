@@ -132,12 +132,15 @@ void main() {
     {
       "lemma": "lep",
       "category": "ADJECTIVE",
+      "type": "GENERAL",
+      "frequency": 120,
       "gender": "MASCULINE",
       "matchedForm": "lepi"
     },
     {
       "lemma": "lepo",
-      "category": "ADVERB"
+      "category": "ADVERB",
+      "frequency": 42
     }
   ]
 }
@@ -154,10 +157,14 @@ void main() {
       expect(entries, hasLength(2));
       expect(entries?[0].lemma, 'lep');
       expect(entries?[0].category, WordCategory.adjective);
+      expect(entries?[0].type, WordType.general);
+      expect(entries?[0].frequency, 120);
       expect(entries?[0].gender, WordGender.masculine);
       expect(entries?[0].matchedForm, 'lepi');
       expect(entries?[1].lemma, 'lepo');
       expect(entries?[1].category, WordCategory.adverb);
+      expect(entries?[1].type, isNull);
+      expect(entries?[1].frequency, 42);
       expect(entries?[1].gender, isNull);
       expect(entries?[1].matchedForm, isNull);
     });

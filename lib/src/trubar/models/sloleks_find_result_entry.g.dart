@@ -11,6 +11,8 @@ _$SloleksFindResultEntryImpl _$$SloleksFindResultEntryImplFromJson(
     _$SloleksFindResultEntryImpl(
       lemma: json['lemma'] as String,
       category: $enumDecode(_$WordCategoryEnumMap, json['category']),
+      frequency: (json['frequency'] as num).toInt(),
+      type: $enumDecodeNullable(_$WordTypeEnumMap, json['type']),
       gender: $enumDecodeNullable(_$WordGenderEnumMap, json['gender']),
       matchedForm: json['matchedForm'] as String?,
     );
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$SloleksFindResultEntryImplToJson(
     <String, dynamic>{
       'lemma': instance.lemma,
       'category': _$WordCategoryEnumMap[instance.category]!,
+      'frequency': instance.frequency,
+      'type': _$WordTypeEnumMap[instance.type],
       'gender': _$WordGenderEnumMap[instance.gender],
       'matchedForm': instance.matchedForm,
     };
@@ -36,6 +40,29 @@ const _$WordCategoryEnumMap = {
   WordCategory.interjection: 'INTERJECTION',
   WordCategory.preposition: 'PREPOSITION',
   WordCategory.abbreviation: 'ABBREVIATION',
+};
+
+const _$WordTypeEnumMap = {
+  WordType.main: 'MAIN',
+  WordType.general: 'GENERAL',
+  WordType.common: 'COMMON',
+  WordType.participle: 'PARTICIPLE',
+  WordType.auxiliary: 'AUXILIARY',
+  WordType.subordinating: 'SUBORDINATING',
+  WordType.coordinating: 'COORDINATING',
+  WordType.possessive: 'POSSESSIVE',
+  WordType.proper: 'PROPER',
+  WordType.indefinite: 'INDEFINITE',
+  WordType.special: 'SPECIAL',
+  WordType.ordinal: 'ORDINAL',
+  WordType.cardinal: 'CARDINAL',
+  WordType.reflexive: 'REFLEXIVE',
+  WordType.personal: 'PERSONAL',
+  WordType.demonstrative: 'DEMONSTRATIVE',
+  WordType.pronominal: 'PRONOMINAL',
+  WordType.interrogative: 'INTERROGATIVE',
+  WordType.relative: 'RELATIVE',
+  WordType.negative: 'NEGATIVE',
 };
 
 const _$WordGenderEnumMap = {
