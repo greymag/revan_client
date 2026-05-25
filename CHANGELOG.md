@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Add App API support with app info endpoint.
 - Add `frequency` and `type` metadata to Trubar find results.
 
 ## 0.2.0
